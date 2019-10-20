@@ -191,7 +191,7 @@ var app = {
 			"; expires=Fri, 31 Dec 9999 23:59:59 GMT";
 	},
 	start_desk: function() {
-		window.location.href = "desk.html";
+		window.location.href = "chat.html";
 	},
     retry_server: function() {
         common.msgprint("Does not seem like a valid server address. Please try again.");

@@ -13,7 +13,7 @@ window.chat = {
 			method: "GET",
 			url: url,
 			data: {
-				build_version: localStorage._build_version || "000"
+				build_version: "000" || localStorage._build_version || "000" // TODO REMVOE DEBUG
 			}
 		}).success(function(data) {
 			// chat startup
@@ -72,12 +72,23 @@ window.chat = {
 		}
 		// start app
 		// patch urls
-		// frappe.request.url = localStorage.server + "/";
+		frappe.request.url = localStorage.server + "/";
 		frappe.base_url = localStorage.server;
 		common.base_url = localStorage.server;
 
+		frappe.user.name = frappe.boot.user.name;
+		frappe.session.user = frappe.boot.user.name;
+
+		moment.locale("en");
+		moment.user_utc_offset = moment().utcOffset();
+		if(frappe.boot.timezone_info) {
+			moment.tz.add(frappe.boot.timezone_info);
+		}
+
 		// start!
 		frappe.chat.setup();
+		frappe.chat.render();
+		frappe.chat.widget.toggle();
 
 		// override logout
         /*frappe.app.redirect_to_login = function() {

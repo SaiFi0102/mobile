@@ -86,6 +86,7 @@ window.chat = {
 		}
 
 		// start!
+		frappe.socketio.init(window.socketio_port);
 		frappe.chat.setup();
 		frappe.chat.render();
 		frappe.chat.widget.toggle();
